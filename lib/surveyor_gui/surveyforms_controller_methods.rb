@@ -251,7 +251,7 @@ module SurveyorGui
 
     private
     def surveyforms_params
-      ::PermittedParams.new(params[:surveyform]).survey
+      PermittedParams.new(params[:surveyform]).survey
     end
 
   end

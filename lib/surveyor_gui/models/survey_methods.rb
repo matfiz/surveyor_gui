@@ -9,7 +9,7 @@ module SurveyorGui
         base.send :accepts_nested_attributes_for, :survey_sections, :allow_destroy => true
 
         base.send :validate, :no_responses
-        base.send :before_destroy, :no_responses
+        base.send :before_destroy, :no_responses, prepend: true
 
       end
 
@@ -22,7 +22,7 @@ module SurveyorGui
           self.response_sets.where('test_data = ?',true).each {|r| r.destroy}
         end
         if !template && response_sets.count>0
-          errors.add(:base,"Reponses have already been collected for this survey, therefore it cannot be modified. Please create a new survey instead.")
+          errors.add(:base,"Responses have already been collected for this survey, therefore it cannot be modified. Please create a new survey instead.")
           return false
         end
       end
